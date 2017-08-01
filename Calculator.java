@@ -9,20 +9,21 @@ import java.util.Scanner;
 class Calculator {
 	public static void main(String[] args) {
 		printGreeting();
+		
 		String input;
 
-		//while(true) {
-			println("Let's begin! Type a short equation with a plus sign in between");
-			
+		while(true) {
 			// Scanner Variable
 			Scanner sc = new Scanner(System.in);
 			input = sc.nextLine();
-			if( input == "quit") {
-				println("Hello");
+			
+			if(input.equals("quit")) {
+				break;
 			}
-			println(input);
-
-		//}
+			if(input.equals("help")) {
+				printHelpInformation();
+			}
+		}
 	}
 
 	// ============= Useful Functions ============= //
@@ -44,6 +45,11 @@ class Calculator {
 		println("+ \t\t\t\t\t\t\t\t +");
 		print("++++++++++++++++++++++++++++++++++");
 		println("++++++++++++++++++++++++++++++++");
+		println("Type a short addition equation with a plus sign in between");
+	}
+
+	static void printHelpInformation() {
+		println("Help method does not work yet, sorry");
 	}
 
 }
