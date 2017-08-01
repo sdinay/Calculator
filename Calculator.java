@@ -20,8 +20,22 @@ class Calculator {
 			if(input.equals("quit")) {
 				break;
 			}
+
 			if(input.equals("help")) {
 				printHelpInformation();
+			}
+
+			for(int i = 0; i < input.length(); i++) {
+				char a = input.charAt(i);
+				if (a == '+') {
+					println("PLUS");
+				} else if (a == '-') {
+					println("MINUS");
+				} else if (a == ' ') {
+					println("SPACE");
+				} else if (a >= 48 || a <= 57) {
+					println("NUMBER");
+				}
 			}
 		}
 	}
@@ -30,6 +44,7 @@ class Calculator {
 	static void println(Object a) {
     	System.out.println(a);
 	}
+
 	static void print(Object a) {
 		System.out.print(a);
 	}
