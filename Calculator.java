@@ -19,6 +19,7 @@ class Calculator {
 			char operations[] = new char[100];
 			int iresu = 0;
 			int ioper = 0;
+			Boolean expressionEntered = false;
 
 			// Scanner Variable
 			Scanner sc = new Scanner(System.in);
@@ -47,6 +48,7 @@ class Calculator {
 				} else if (a >= 48 || a <= 57) {
 					if( !Character.isDigit(a) )
 						continue;
+					expressionEntered = true;
 					if(result[iresu] == 0) {
 						result[iresu] = a - '0';
 					} else {
@@ -70,7 +72,8 @@ class Calculator {
 				j++;
 				k++;
 			}
-			println("Result: " + result[j]);
+			if(expressionEntered)
+				println("Result: " + result[j]);
 		}
 	}
 
@@ -111,7 +114,13 @@ class Calculator {
 	}
 
 	static void printHelpInformation() {
-		println("Help method does not work yet, sorry");
+		println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		println("+ \t\t\t\t\t\t\t\t +");
+		println("+ \t\t\t INFORMATION \t\t\t\t +");
+		println("+ quit\t:type quit by itself on a line to exit the Calculator \u0020\u0020\u0020+");
+		println("+ help\t:type help for information on how to use the Calculator \u0020+");
+		println("+ \t\t\t\t\t\t\t\t +");
+		println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 	}
 
 }
