@@ -13,6 +13,13 @@ class Calculator {
 		String input;
 
 		while(true) {
+			// Reset Variables
+			int resultLength = 101;
+			int result[] = new int[resultLength];
+			char operations[] = new char[100];
+			int iresu = 0;
+			int ioper = 0;
+
 			// Scanner Variable
 			Scanner sc = new Scanner(System.in);
 			input = sc.nextLine();
@@ -28,15 +35,42 @@ class Calculator {
 			for(int i = 0; i < input.length(); i++) {
 				char a = input.charAt(i);
 				if (a == '+') {
-					println("PLUS");
+					operations[ioper] = '+';
+					iresu++;
+					ioper++;
 				} else if (a == '-') {
-					println("MINUS");
+					operations[ioper] = '-';
+					iresu++;
+					ioper++;
 				} else if (a == ' ') {
-					println("SPACE");
+					iresu++;
 				} else if (a >= 48 || a <= 57) {
-					println("NUMBER");
+					if( !Character.isDigit(a) )
+						continue;
+					if(result[iresu] == 0) {
+						result[iresu] = a - '0';
+					} else {
+						result[iresu] = appendOnesDigit(result[iresu], a-'0');
+					}
+				} else {
+					println("Unknown input");
 				}
 			}
+
+			int j = 0;
+			int k = 0;
+
+			while(j != resultLength-1 && result[j] != 0 && result[j+1] != 0) {
+				if(operations[k] == '+') {
+					result[j+1] = add(result[j], result[j+1]);
+				}
+				if(operations[k] == '-') {
+					result[j+1] = subt(result[j], result[j+1]);
+				}
+				j++;
+				k++;
+			}
+			println("Result: " + result[j]);
 		}
 	}
 
@@ -49,18 +83,31 @@ class Calculator {
 		System.out.print(a);
 	}
 
+	static int appendOnesDigit(int a, int ones) {
+		return (a * 10) + ones;
+	}
+
+	static int add(int a, int b) {
+		return a + b;
+	}
+
+	static int subt(int a, int b) {
+		return a - b;
+	}
+
 	// ============ One Time Functions ============= //
 	static void printGreeting() {
-		print("++++++++++++++++++++++++++++++++++");
-		println("++++++++++++++++++++++++++++++++");
+		println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		println("+ \t\t\t\t\t\t\t\t +");
 		println("+ \t\t Welcome to the Java Calculator \t\t +");
 		println("+ \t\t \u0020\u0020\u0020\u0020Created: 07 - 31 - 2017 \t\t\t +");
 		println("+ \t\t \u0020\u0020\u0020\u0020Updated: 07 - 31 - 2017 \t\t\t +");
 		println("+ \t\t\t\t\t\t\t\t +");
-		print("++++++++++++++++++++++++++++++++++");
-		println("++++++++++++++++++++++++++++++++");
-		println("Type a short addition equation with a plus sign in between");
+		println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		println("+ \t\t\t\t\t\t\t\t +");
+		println("+ \u0020Type an equation using at most 5 numbers seperated by some\u0020\u0020\u0020 +\n+ \u0020plus and/or minus signs\t\t\t\t\t +");
+		println("+ \t\t\t\t\t\t\t\t +");
+		println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 	}
 
 	static void printHelpInformation() {
