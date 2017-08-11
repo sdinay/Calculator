@@ -70,8 +70,9 @@ class Calculator {
 				else if (a >= 48 || a <= 57) {
 					// If a is not a digit, skip the char
 					if( !Character.isDigit(a) ) {
-						println("Warning: symbol not present in calculator");
-						continue;
+						//println("Warning: symbol not present in calculator");
+						expressionEntered = false;
+						break; //continue;
 					}
 					expressionEntered = true;
 					if(result[iresu] == 0) {
@@ -87,12 +88,12 @@ class Calculator {
 			int j = 0; // Tracks the result array
 			int k = 0; // Tracks the operations array
 
-			println("iresu = " + iresu);
-			println("ioper = " + ioper);
+			/*println("iresu = " + iresu);
+			println("ioper = " + ioper);*/
 
 			// If result index is not bigger than result[] and the elements are not empty
 			while(j != resultLength-1 && j < iresu) {//result[j] != 0 && result[j+1] != 0) {
-				println("j = " + j + " and k = " + k);
+				//println("j = " + j + " and k = " + k);
 				if(operations[k] == '+')
 					result[j+1] = add(result[j], result[j+1]);
 				if(operations[k] == '-')
